@@ -440,7 +440,7 @@ public final class GoogleCloudStorageObjectAPI: StorageObjectAPI {
         
         do {
             let requestBody = try JSONSerialization.data(withJSONObject: ["metadata": metadata])
-            return request.send(method: .PATCH, path: "\(endpoint)/\(bucket)/o", query: queryParams, body: .data(requestBody))
+            return request.send(method: .PATCH, path: "\(endpoint)/\(bucket)/o/\(object.replacingOccurrences(of: "/", with: "%2F"))", query: queryParams, body: .data(requestBody))
         } catch {
             return request.eventLoop.makeFailedFuture(error)
         }
