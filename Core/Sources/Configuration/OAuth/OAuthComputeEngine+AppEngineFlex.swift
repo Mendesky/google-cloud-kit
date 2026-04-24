@@ -35,7 +35,7 @@ public class OAuthComputeEngineAppEngineFlex: OAuthRefreshable {
             return httpClient.execute(request: request, eventLoop: .delegate(on: self.eventLoop)).flatMap { response in
                 
                 guard var byteBuffer = response.body,
-                    let responseData = byteBuffer.readData(length: byteBuffer.readableBytes),
+                    let responseData = byteBuffer.readBytes(length: byteBuffer.readableBytes).map({ Data($0) }),
                     response.status == .ok else {
                         return self.eventLoop.makeFailedFuture(OauthRefreshError.noResponse(response.status))
                 }

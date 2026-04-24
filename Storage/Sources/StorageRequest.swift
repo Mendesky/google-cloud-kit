@@ -65,10 +65,10 @@ class GoogleCloudStorageRequest: GoogleCloudAPIRequest {
                     return self.eventLoop.makeSucceededFuture("{}".data(using: .utf8)!)
                 }
 
-                guard var byteBuffer = response.body else {
+                guard let byteBuffer = response.body else {
                     fatalError("Response body from Google is missing! This should never happen.")
                 }
-                let responseData = byteBuffer.readData(length: byteBuffer.readableBytes)!
+                let responseData = Data(byteBuffer.readableBytesView)
 
                 guard (200...299).contains(response.status.code) else {
                     let error: Error
