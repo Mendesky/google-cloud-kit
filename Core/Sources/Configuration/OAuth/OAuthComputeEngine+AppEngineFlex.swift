@@ -6,7 +6,6 @@
 //
 
 import NIO
-import NIOFoundationCompat
 import NIOHTTP1
 import AsyncHTTPClient
 import Foundation

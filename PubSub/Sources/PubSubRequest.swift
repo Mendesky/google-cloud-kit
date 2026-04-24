@@ -1,7 +1,6 @@
 import Foundation
 import Core
 import NIO
-import NIOFoundationCompat
 import NIOHTTP1
 import AsyncHTTPClient
 
